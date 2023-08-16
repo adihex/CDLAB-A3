@@ -1,7 +1,7 @@
 %{
   #include<stdio.h>
   #include<string.h>
-  int yylval = -1;
+  int yylval=-1;
   int lines = 1;
 
   //Token Types
@@ -59,23 +59,23 @@ output_construct display\({id}\)
 {ws}*   
 {separator} {yylval = (int)yytext[0]; return (SEPARATOR);}
 main\(\)   {return (MAIN);}
-if   {return(IF);}
-then  {return(THEN);}
-else  {return(ELSE);}
-for   {yylval=(int)yytext[0]; return(LOOP);}
-while {yylval=(int)yytext[0]; return(LOOP);}
-{input_construct} {yylval=INPUT_CONSTRUCT; return (IO_CONSTRUCT);}
-{output_construct} {yylval=OUTPUT_CONSTRUCT; return (IO_CONSTRUCT);}
+if   { return(IF);}
+then  { return(THEN);}
+else  { return(ELSE);}
+for   { yylval=LOOP; return(LOOP);}
+while { yylval=LOOP; return(LOOP);}
+{input_construct} { yylval=INPUT_CONSTRUCT; return (IO_CONSTRUCT);}
+{output_construct} { yylval=OUTPUT_CONSTRUCT; return (IO_CONSTRUCT);}
 "int"|"INT"   {return (INTEGER);}
-"float"|"FLOAT"   {return (FLOAT);}
-"char"|"CHAR"   {return (CHAR);}
+"float"|"FLOAT"   { yylval= FLOAT; return (FLOAT);}
+"char"|"CHAR"   { yylval=CHAR; return (CHAR);}
 "++"  {yylval= INCREMENT; return (ARITHMETIC);}
 "--"  {yylval= DECREMENT; return (ARITHMETIC);}
-{int_num}  {return (INT_NUM);}
-{float_num} {return (FLOAT_NUM);}
+{int_num}  { yylval=INT_NUM; return (INT_NUM);}
+{float_num} { yylval=FLOAT_NUM; return (FLOAT_NUM);}
 {id} {return (ID);}
 {assignment}  {
-              int ans=(int) yytext[0]; return(ARITHMETIC);
+              int ans=(int) yytext[0]; 
               if(strlen(yytext)>1){
                 ans+=(int) yytext[1];
               }
@@ -100,5 +100,8 @@ int yywrap() { return 1;}
 
 int main() {
   int token;
-  yyin = fopen ("")
+  yyin = fopen ("input.txt","r"); 
+  while((token=yylex())!=0){
+    printf("Token: %d\tText:%s\t\tValue:%d\n",token,yytext,yylval);}
+  return 0;
 }
