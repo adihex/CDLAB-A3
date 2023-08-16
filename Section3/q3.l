@@ -90,7 +90,6 @@ while { yylval=LOOP; return(LOOP);}
 ">"       {yylval= GT; return(RELOP);}
 ">="       {yylval= GE; return(RELOP);}
 "\n"       {lines++;}
-"\r"        
 .           {printf("Error\n");}
 %%
 

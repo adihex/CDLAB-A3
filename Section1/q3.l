@@ -7,6 +7,7 @@ int line_number=1;
 
 %%
 ([abc]*(aa)+[abc]*)|([abc]*(bb)+[abc]*) {return 1;}
+\n   {line_number++;}
 .*   {return ERROR;}
 %%
 
@@ -20,10 +21,10 @@ int main(int argc,char **argv)
  yyin = fopen("test_1_3.txt","r+");
  while((token=yylex())!=0)
  {
- if(yyleng==8)
-  printf("Correct pattern found, %s, %d\n",yytext,token);
- if(token==ERROR) 
-  printf("Wrong characters\n");
+ if(token==1 && yyleng==8)
+  printf("Correct pattern found at line no:%d, %s\n",line_number,yytext);
+ else 
+  printf("Pattern not found\n");
  }
   return 0;
 }
