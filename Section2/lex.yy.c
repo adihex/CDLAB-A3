@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 10
-#define YY_END_OF_BUFFER 11
+#define YY_NUM_RULES 9
+#define YY_END_OF_BUFFER 10
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,8 +362,8 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[53] =
     {   0,
-        1,    1,   11,    9,    1,    1,    6,    7,    7,    7,
-        9,    9,    9,    9,    1,    0,    6,    0,    7,    0,
+        1,    1,   10,    8,    1,    1,    6,    7,    7,    7,
+        8,    8,    8,    8,    1,    0,    6,    0,    7,    0,
         2,    0,    0,    6,    6,    0,    0,    0,    0,    0,
         0,    0,    4,    0,    3,    0,    0,    0,    5,    0,
         0,    0,    6,    0,    0,    0,    0,    0,    0,    5,
@@ -810,22 +810,16 @@ YY_RULE_SETUP
 {return(RELOP);}
 	YY_BREAK
 case 8:
-/* rule 8 can match eol */
 YY_RULE_SETUP
 #line 48 "q1.l"
-
+{printf("ERROR: unknown token encountered\n");}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 49 "q1.l"
-{printf("ERROR: unknown token encountered\n");}
-	YY_BREAK
-case 10:
-YY_RULE_SETUP
-#line 51 "q1.l"
+#line 50 "q1.l"
 ECHO;
 	YY_BREAK
-#line 828 "lex.yy.c"
+#line 822 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1830,7 +1824,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 51 "q1.l"
+#line 50 "q1.l"
 
 
 int yywrap(void) {return 1;}
